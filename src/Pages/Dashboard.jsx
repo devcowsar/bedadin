@@ -1,11 +1,4 @@
-import {
-  Gamepad2,
-  MonitorPlay,
-  ToggleLeft,
-  ToggleRight,
-  Users,
-  Volleyball,
-} from "lucide-react";
+import { Gamepad2, MonitorPlay, Users, Volleyball } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 const Dashboard = () => {
@@ -69,17 +62,22 @@ const Dashboard = () => {
     const isLoading = loadingToggle === key;
 
     return (
-      <li className="flex justify-between items-center py-1 border-b last:border-none">
-        <span>{label}</span>
+      <li className="flex justify-between items-center py-2 border-b last:border-none text-sm">
+        <span className="text-gray-700">{label}</span>
         {isLoading ? (
-          <div className="w-6 h-6 animate-pulse bg-gray-300 rounded-full" />
+          <div className="w-10 h-6 bg-gray-300 animate-pulse rounded-full" />
         ) : (
-          <button onClick={() => handleToggle(key)}>
-            {isActive ? (
-              <ToggleRight className="text-green-500 w-6 h-6" />
-            ) : (
-              <ToggleLeft className="text-red-500 w-6 h-6" />
-            )}
+          <button
+            onClick={() => handleToggle(key)}
+            className={`relative w-12 h-6 transition-all duration-300 rounded-full ${
+              isActive ? "bg-green-500" : "bg-gray-400"
+            }`}
+          >
+            <span
+              className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+                isActive ? "translate-x-6" : ""
+              }`}
+            />
           </button>
         )}
       </li>
